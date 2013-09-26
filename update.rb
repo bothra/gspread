@@ -4,8 +4,8 @@ require 'net/scp'
 
 # retrieve files
 
-    host1 = 'spruce.pcbi.upenn.edu'
-    login = 'mguidry'
+    host1 = 'server.example.com'
+    login = 'username'
     Net::SCP.start(host1, login) do |scp|
       scp.download('bandwidth_from_uga.csv', '.')
       scp.download('bandwidth_to_uga.csv', '.')
@@ -16,10 +16,10 @@ require 'net/scp'
 
 
 # Google Spreadsheet
-session = GoogleDrive.login("mguidry@apidb.org", "d0l3m1t3!")
+session = GoogleDrive.login("redacted", "redacted")
 
 # Download Worksheet
-dl = session.spreadsheet_by_key("0Akco2GpW4xOkdEs0aFJUVjhwT3pJQmN0OTVwQzlzTEE").worksheets[0]
+dl = session.spreadsheet_by_key("redacted").worksheets[0]
 
 rowd = File.open('bandwidth_from_uga.csv'){|f| f.readlines.map{|p| p.strip.split(",")}}
 
@@ -32,7 +32,7 @@ end
 
 
 # Upload Worksheet 
-ul = session.spreadsheet_by_key("0Akco2GpW4xOkdEs0aFJUVjhwT3pJQmN0OTVwQzlzTEE").worksheets[1]
+ul = session.spreadsheet_by_key("redacted").worksheets[1]
 
 rowu = File.open('bandwidth_to_uga.csv'){|f| f.readlines.map{|p| p.strip.split(",")}}
 
@@ -56,7 +56,7 @@ rowd2.each do |row|
 end
 
 # loquat to shiro
-ul2 = session.spreadsheet_by_key("0Akco2GpW4xOkdEs0aFJUVjhwT3pJQmN0OTVwQzlzTEE").worksheets[3]
+ul2 = session.spreadsheet_by_key("redacted").worksheets[3]
 
 rowu2 = File.open('bandwidth_to_ca.csv'){|f| f.readlines.map{|p| p.strip.split(",")}}
 
